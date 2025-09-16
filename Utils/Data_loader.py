@@ -12,15 +12,19 @@ def load_and_export_ner_data(
     train_ratio=0.8,
     train_output_path="./train.spacy", 
     dev_output_path="./dev.spacy",
+    debug_mode=False,
+    run_validation=False,
+    visualize_patterns=False, 
     exclude_entities=["UNKNOWN","Graduation Year","Years of Experience"],
-    
+    analyze_before_processing=False,
+    split_skill_entities=True,
 ):
     """
     Enhanced resume NER data loader with advanced cleaning and analysis.
     """
     
     #ner_dataset_path = Path('/kaggle/input/resume-entities-for-ner/Entity Recognition in Resumes.json')
-    ner_dataset_path = Path('C:/ML/CV-Parsing/Dataset/Entity Recognition in Resumes.json')
+    ner_dataset_path = Path(r'C:\ML\CV-Parsing\Data\Entity Recognition in Resumes.json')
 
     if not ner_dataset_path.exists():
         logging.error(f"Dataset file not found at {ner_dataset_path}")
@@ -87,3 +91,12 @@ def load_and_export_ner_data(
     except Exception as e:
         logging.error(f"Error loading raw data: {e}")
         return None, None
+    
+    print(raw_data[:2])
+
+
+
+
+if __name__ == "__main__":
+    load_and_export_ner_data()
+    

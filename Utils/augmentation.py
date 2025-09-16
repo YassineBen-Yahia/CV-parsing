@@ -107,17 +107,6 @@ def augment_low_recall_entities(data, factor=2):
 
 
 
-def create_spacy_training_data(n_samples: int = 100) -> List[Dict]:
-    """
-    Create spaCy training data with n_samples synthetic examples.
-    Returns:
-        List of dicts with 'text' and 'entities'.
-    """
-    data = []
-    for _ in range(n_samples):
-        text, entities = generate_resume_sentence()
-        data.append({"text": text, "entities": entities})
-    return data
 
 
 def generate_designation_variations(designations):
