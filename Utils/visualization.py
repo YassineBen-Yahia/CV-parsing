@@ -52,10 +52,55 @@ def visualize_data():
     plt.tight_layout()
     plt.show()
 
-    # Show some random annotated samples
-    import random
-    print("\nSample annotated texts:")
-    for item in random.sample(data, min(3, len(data))):
-        print("Text:", item["content"][:200], "...")
-        print("Entities:", [(ann["label"], ann["points"]) for ann in item["annotation"]])
-        print()
+    # Show the most frequent value for each entity type
+    from collections import defaultdict
+    entity_value_counts = defaultdict(Counter)
+    for item in data:
+        text = item.get("content", "")
+        for annotation in item.get("annotation", []):
+            label = annotation.get("label")
+            if isinstance(label, list):
+                if not label:
+                    continue
+                label = label[0]
+            if not isinstance(label, str):
+                continue
+            for point in annotation.get("points", []):
+                start = point.get("start")
+                end = point.get("end")
+                if start is not None and end is not None:
+                    value = text[start:end].strip()
+                    if value:
+                        entity_value_counts[label][value] += 1
+
+    # Prepare data for plotting
+    labels = []
+    values = []
+    counts = []
+    for label, counter in entity_value_counts.items():
+        most_common = counter.most_common(1)
+        if most_common:
+            value, count = most_common[0]
+            labels.append(label)
+            values.append(value)
+            counts.append(count)
+
+    # Plot most frequent value for each entity type
+    plt.figure(figsize=(12, 6))
+    sns.barplot(x=labels, y=counts, palette="mako")
+    plt.title("Most Frequent Value Count for Each Entity Type")
+    plt.ylabel("Count")
+    plt.xlabel("Entity Type")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+
+    # Annotate bars with the most frequent value
+    for i, (v, c) in enumerate(zip(values, counts)):
+        plt.text(i, c, f"'{v}'", ha='center', va='bottom', fontsize=8, rotation=90)
+
+    plt.show()
+
+    
+
+if __name__ == "__main__":
+    visualize_data()
