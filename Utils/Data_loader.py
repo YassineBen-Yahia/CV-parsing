@@ -22,7 +22,7 @@ def load_and_export_ner_data(
     #ner_dataset_path = Path('/kaggle/input/resume-entities-for-ner/Entity Recognition in Resumes.json')
     ner_dataset_path = Path(r'C:\ML\CV-Parsing\Data\Entity Recognition in Resumes.json')
 
-    create_spacy_files(
+    train_data , dev_data = create_spacy_files(
         json_path=r"C:\ML\CV-Parsing\Data\Entity Recognition in Resumes.json",
         train_path=r"C:\ML\CV-Parsing\Data\train.spacy",
         dev_path=r"C:\ML\CV-Parsing\Data\dev.spacy",
@@ -30,6 +30,10 @@ def load_and_export_ner_data(
         split_skill_entities=split_skill_entities,
         train_ratio=0.8
     )
+    return{
+        'train_data': train_data, 
+        'val_data': dev_data,
+    }
 
 
 if __name__ == "__main__":

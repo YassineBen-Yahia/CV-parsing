@@ -1,7 +1,6 @@
 import spacy
 from spacy.tokens import DocBin
 import random
-import logging
 from pathlib import Path
 from tqdm import tqdm
 import json
@@ -98,6 +97,11 @@ def create_spacy_files(json_path, train_path, dev_path, exclude_entities,split_s
         doc_bin.to_disk(out_path)
         print(f"Saved train to {train_path}, dev to {dev_path}")
     print("Saved !!!")
+
+    return {
+                'train_data': train_data, 
+                'val_data': dev_data,
+            }
 
 
 
