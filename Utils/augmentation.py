@@ -9,7 +9,7 @@ faker = Faker()
 
 
 
-def augment_low_recall_entities(data, factor=2):
+def augment_entities(data, factor=3):
     """
     Focus on improving recall for entities like Designation, Companies worked at, and Degree
     by generating more diverse examples and contextual variations.
@@ -21,6 +21,7 @@ def augment_low_recall_entities(data, factor=2):
     designations = extract_entities_of_type(data, "Designation")
     companies = extract_entities_of_type(data, "Companies worked at")
     degrees = extract_entities_of_type(data, "Degree")
+    skills= extract_entities_of_type(data, "Skills")
     
     # Generate position title variations
     designation_variations = generate_designation_variations(designations)
@@ -30,11 +31,14 @@ def augment_low_recall_entities(data, factor=2):
     
     # Generate degree variations
     degree_variations = generate_degree_variations(degrees)
+
+    # Expand skills vocabulary
+    skills_variations = expand_skills_vocabulary(skills)
     
     # Apply entity swapping and contextual enrichment
-    for text, annotations in tqdm(data, desc="Augmenting low-recall entities"):
+    for text, annotations in tqdm(data, desc="Augmenting entities"):
         entities = annotations["entities"]
-        has_target_entity = any(label in ["Designation", "Companies worked at", "Degree"] 
+        has_target_entity = any(label in ["Designation", "Companies worked at", "Degree", "Skills"] 
                                for _, _, label in entities)
         
         if not has_target_entity:
@@ -88,6 +92,17 @@ def augment_low_recall_entities(data, factor=2):
                         aug_entities.append((start + offset, start + offset + len(new_degree), label))
                         offset = new_offset
                         continue
+                elif label == "Skills":
+                    if random.random() < 0.6:  # 60% chance to substitute
+                        new_skill = random.choice(skills_variations)
+                        before = aug_text[:start + offset]
+                        after = aug_text[end + offset:]
+                        aug_text = before + new_skill + after
+                        
+                        new_offset = offset + len(new_skill) - len(entity_text)
+                        aug_entities.append((start + offset, start + offset + len(new_skill), label))
+                        offset = new_offset
+                        continue
                 
                 # For other entities, keep them as is
                 aug_entities.append((start + offset, end + offset, label))
@@ -100,7 +115,7 @@ def augment_low_recall_entities(data, factor=2):
     #synthetic_examples = generate_synthetic_context_examples(factor * 2)
     #augmented.extend(synthetic_examples)
     
-    logging.info(f"Created {len(augmented)} examples for low-recall entities")
+    logging.info(f"Created {len(augmented)} examples of entities")
     return augmented
 
 
@@ -348,7 +363,7 @@ def generate_synthetic_skills_examples(skills, count=50):
     
     for _ in range(count):
         # Select random skills
-        selected_skills = random.sample(skills, k=random.randint(3, 10))
+        selected_skills = random.sample(skills, k=20) if len(skills) >= 20 else skills
         
         # Choose a template
         template = random.choice(templates)
@@ -439,5 +454,4 @@ def count_entities_by_type(data):
 if __name__ == "__main__":
     n = 100  # Number of samples to generate
     import json
-    print(f"Generated {n} synthetic resume samples for spaCy training.")
-    print("fonction bechir:", generate_designation_variations(["Software Engineer", "Data Scientist", "Project Manager", "Business Analyst", "Researcher"]))
+    print(expand_skills_vocabulary([]))
