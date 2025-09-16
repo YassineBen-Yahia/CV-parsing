@@ -1,6 +1,6 @@
 import random
 from typing import List, Tuple, Dict
-from tools import filter_non_overlapping_spans
+from tools import filter_non_overlapping_spans , clean_entities
 import re
 from faker import Faker
 import json
@@ -25,7 +25,7 @@ def augment_and_balance_data(train_data):
     logging.info(f"Initial entity distribution: {entity_counts}")
     
     # Augment entities with low recall
-    augmented_entities = augment_entities(train_data, factor=3)
+    augmented_entities = augment_entities(train_data, factor=6)
     
     # Add augmented entities to training data
     train_data.extend(augmented_entities)
@@ -36,7 +36,7 @@ def augment_and_balance_data(train_data):
     train_data.extend(synthetic_skills_examples)
     
     # Introduce look-alike non-entities to improve precision
-    """lookalikes = []
+    lookalikes = []
     for _ in range(50):
         lookalikes.append((
             generate_email_lookalike(),
@@ -46,13 +46,13 @@ def augment_and_balance_data(train_data):
             generate_college_lookalike(),
             {"entities": []}
         ))
-    train_data.extend(lookalikes)"""
+    train_data.extend(lookalikes)
     
     # Shuffle the training data to mix original and augmented examples
     random.shuffle(train_data)
-    
     # Final entity distribution after augmentation
     final_entity_counts = count_entities_by_type(train_data)
+    train_data = [(text, {"entities": clean_entities(text,entities["entities"] )}) for text, entities in train_data]
     logging.info(f"Final entity distribution after augmentation: {final_entity_counts}")
     
     logging.info(f"Total training samples after augmentation: {len(train_data)}")
@@ -85,7 +85,7 @@ def augment_and_balance_data(train_data):
 
 
 
-def augment_entities(data, factor=3):
+def augment_entities(data, factor=6):
     """
     Focus on improving recall for entities like Designation, Companies worked at, and Degree
     by generating more diverse examples and contextual variations.

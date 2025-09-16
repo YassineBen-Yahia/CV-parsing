@@ -1,0 +1,7 @@
+# config file
+__pycache__/
+config.cfg 
+
+
+# training outputs ( keep best model)
+./training_outputs/model-last/*

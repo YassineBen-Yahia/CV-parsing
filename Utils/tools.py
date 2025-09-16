@@ -81,6 +81,7 @@ def create_spacy_files(json_path, train_path, dev_path, exclude_entities,split_s
     random.shuffle(data)
     #print(data[:2])  # Debug: print first 2 samples to verify content
     split = int(len(data) * train_ratio)
+    data = [(text, {"entities": clean_entities(text, entities["entities"])}) for text, entities in data]    
     train_data = data[:split]
     #print(f"First training sample: {train_data[0]}")  # Debug: print first training sample
     dev_data = data[split:]
@@ -160,3 +161,21 @@ def normalize_skills(text):
         text = f"{text} ({experience_info})"
     
     return text.strip()
+
+def clean_entities(text, entities):
+    cleaned = []
+    for ent in entities:
+        
+        start, end, label = ent
+        new_start = start
+        new_end = end
+        # Remove leading whitespace
+        while new_start < new_end and text[new_start].isspace():
+            new_start += 1
+        # Remove trailing whitespace
+        while new_end > new_start and text[new_end - 1].isspace():
+            new_end -= 1
+        # Only add if non-empty after trimming
+        if new_start < new_end:
+            cleaned.append((new_start, new_end, label))
+    return cleaned
