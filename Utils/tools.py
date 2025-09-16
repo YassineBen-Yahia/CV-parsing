@@ -79,8 +79,10 @@ def create_spacy_files(json_path, train_path, dev_path, exclude_entities,split_s
                                 continue
             data.append((text, {"entities": entity_spans}))
     random.shuffle(data)
+    #print(data[:2])  # Debug: print first 2 samples to verify content
     split = int(len(data) * train_ratio)
     train_data = data[:split]
+    #print(f"First training sample: {train_data[0]}")  # Debug: print first training sample
     dev_data = data[split:]
     for dataset, out_path in [(train_data, train_path), (dev_data, dev_path)]:
         doc_bin = DocBin()
@@ -98,10 +100,7 @@ def create_spacy_files(json_path, train_path, dev_path, exclude_entities,split_s
         print(f"Saved train to {train_path}, dev to {dev_path}")
     print("Saved !!!")
 
-    return {
-                'train_data': train_data, 
-                'val_data': dev_data,
-            }
+    return data[:split], data[split:]
 
 
 
