@@ -1,10 +1,85 @@
 import random
 from typing import List, Tuple, Dict
+from tools import filter_non_overlapping_spans
 import re
 from faker import Faker
 import logging
+import spacy
+from spacy.tokens import DocBin
 from tqdm import tqdm
 faker = Faker()
+
+
+
+def augment_and_balance_data(train_data):
+    """
+    Apply data augmentation and balancing techniques to the training data.
+    Focus on improving recall for entities like Designation, Companies worked at, and Degree.
+    """
+    logging.info("Starting data augmentation and balancing...")
+    nlp = spacy.blank("en")
+    
+    # Analyze current entity distribution
+    entity_counts = count_entities_by_type(train_data)
+    logging.info(f"Initial entity distribution: {entity_counts}")
+    
+    # Augment entities with low recall
+    augmented_entities = augment_entities(train_data, factor=3)
+    
+    # Add augmented entities to training data
+    train_data.extend(augmented_entities)
+    
+    # Generate synthetic examples focused on skills
+    skills = extract_entities_of_type(train_data, "Skills")
+    synthetic_skills_examples = generate_synthetic_skills_examples(skills, count=100)
+    train_data.extend(synthetic_skills_examples)
+    
+    # Introduce look-alike non-entities to improve precision
+    """lookalikes = []
+    for _ in range(50):
+        lookalikes.append((
+            generate_email_lookalike(),
+            {"entities": []}
+        ))
+        lookalikes.append((
+            generate_college_lookalike(),
+            {"entities": []}
+        ))
+    train_data.extend(lookalikes)"""
+    
+    # Shuffle the training data to mix original and augmented examples
+    random.shuffle(train_data)
+    
+    # Final entity distribution after augmentation
+    final_entity_counts = count_entities_by_type(train_data)
+    logging.info(f"Final entity distribution after augmentation: {final_entity_counts}")
+    
+    logging.info(f"Total training samples after augmentation: {len(train_data)}")
+
+
+    random.shuffle(train_data)
+    
+    train_path = r"C:\ML\CV-Parsing\Data\augmented_training_data.spacy"
+    
+    doc_bin = DocBin()
+    for text, entities in tqdm(train_data, desc=f"Processing {train_path}"):
+        doc = nlp.make_doc(text)
+        spans = []
+        for start, end, label in entities["entities"]:
+            span = doc.char_span(start, end, label=label, alignment_mode="strict")
+            if span is not None:
+                spans.append(span)
+        filtered_spans = filter_non_overlapping_spans(spans)
+        doc.ents = filtered_spans
+        doc_bin.add(doc)
+    doc_bin.to_disk(train_path)
+    print(f"Saved augmented train to {train_path}")
+
+    with open(r"C:\ML\CV-Parsing\Data\augmented_train_data.json", "w", encoding="utf-8") as f:
+        json.dump([{"text": text, "entities": [[s, e, l] for s, e, l in anns["entities"]]} 
+            for text, anns in train_data], f, indent=2)
+    
+    return train_data
 
 
 
@@ -454,4 +529,6 @@ def count_entities_by_type(data):
 if __name__ == "__main__":
     n = 100  # Number of samples to generate
     import json
-    print(expand_skills_vocabulary([]))
+    from Data_loader import load_and_export_ner_data
+    train_data, val_data = load_and_export_ner_data()
+    augmented_train = augment_and_balance_data(train_data)
