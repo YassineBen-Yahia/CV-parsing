@@ -2,54 +2,109 @@ import random
 from typing import List, Tuple, Dict
 import re
 from faker import Faker
+import logging
+from tqdm import tqdm
 faker = Faker()
 
-# Sample data for augmentation
-SKILLS = ["Python", "Machine Learning", "Data Analysis", "Project Management", "SQL", "JavaScript", "Communication"]
-DEGREES = ["B.Sc. Computer Science", "M.Sc. Data Science", "MBA", "Ph.D. Physics", "B.A. Economics"]
-POSITIONS = ["Software Engineer", "Data Scientist", "Project Manager", "Business Analyst", "Researcher"]
-COMPANIES = ["Google", "Microsoft", "Amazon", "Facebook", "IBM", "Deloitte"]
-DURATIONS = ["2 years", "Jan 2020 - Dec 2022", "2018-2021", "3 months", "since 2019"]
 
-# Entity labels for spaCy
-LABELS = {
-    "SKILL": SKILLS,
-    "DEGREE": DEGREES,
-    "POSITION": POSITIONS,
-    "COMPANY": COMPANIES,
-    "DURATION": DURATIONS
-}
 
-def generate_resume_sentence() -> Tuple[str, List[Tuple[int, int, str]]]:
+
+def augment_low_recall_entities(data, factor=2):
     """
-    Generate a synthetic resume sentence and its entity annotations.
-    Returns:
-        text (str): The generated sentence.
-        entities (List[Tuple[int, int, str]]): List of (start, end, label) for entities.
+    Focus on improving recall for entities like Designation, Companies worked at, and Degree
+    by generating more diverse examples and contextual variations.
     """
-    skill = random.choice(SKILLS)
-    degree = random.choice(generate_degree_variations([]))
-    position = random.choice(generate_designation_variations([]))
-    company = random.choice(generate_company_variations([]))
-    duration = random.choice(DURATIONS)
+    logging.info("Augmenting entities with low recall (Designation, Companies worked at, Degree)")
+    augmented = []
     
-    templates = [
-        f"Worked as a {position} at {company} for {duration} with expertise in {skill}.",
-        f"{degree} holder, previously employed at {company} as a {position} for {duration}. Skills include {skill}.",
-        f"{position} at {company} ({duration}), skilled in {skill}. Degree: {degree}.",
-        f"{company} {position} ({duration}), {degree}, specializes in {skill}."
-    ]
-    text = random.choice(templates)
+    # Extract all examples of these entity types
+    designations = extract_entities_of_type(data, "Designation")
+    companies = extract_entities_of_type(data, "Companies worked at")
+    degrees = extract_entities_of_type(data, "Degree")
     
-    # Find entity spans
-    entities = []
-    for label, values in LABELS.items():
-        for value in values:
-            start = text.find(value)
-            if start != -1:
-                end = start + len(value)
-                entities.append((start, end, label))
-    return text, entities
+    # Generate position title variations
+    designation_variations = generate_designation_variations(designations)
+    
+    # Generate company name variations
+    company_variations = generate_company_variations(companies)
+    
+    # Generate degree variations
+    degree_variations = generate_degree_variations(degrees)
+    
+    # Apply entity swapping and contextual enrichment
+    for text, annotations in tqdm(data, desc="Augmenting low-recall entities"):
+        entities = annotations["entities"]
+        has_target_entity = any(label in ["Designation", "Companies worked at", "Degree"] 
+                               for _, _, label in entities)
+        
+        if not has_target_entity:
+            continue
+            
+        # Create multiple augmented versions
+        for _ in range(factor):
+            aug_text = text
+            aug_entities = []
+            offset = 0
+            
+            # Sort entities by position
+            sorted_entities = sorted(entities, key=lambda x: x[0])
+            
+            for start, end, label in sorted_entities:
+                entity_text = text[start:end]
+                
+                # Generate variations for target entity types
+                if label == "Designation":
+                    if random.random() < 0.8:  # 80% chance to substitute
+                        new_designation = random.choice(designation_variations)
+                        before = aug_text[:start + offset]
+                        after = aug_text[end + offset:]
+                        aug_text = before + new_designation + after
+                        
+                        new_offset = offset + len(new_designation) - len(entity_text)
+                        aug_entities.append((start + offset, start + offset + len(new_designation), label))
+                        offset = new_offset
+                        continue
+                
+                elif label == "Companies worked at":
+                    if random.random() < 0.7:  # 70% chance to substitute
+                        new_company = random.choice(company_variations)
+                        before = aug_text[:start + offset]
+                        after = aug_text[end + offset:]
+                        aug_text = before + new_company + after
+                        
+                        new_offset = offset + len(new_company) - len(entity_text)
+                        aug_entities.append((start + offset, start + offset + len(new_company), label))
+                        offset = new_offset
+                        continue
+                        
+                elif label == "Degree":
+                    if random.random() < 0.8:  # 80% chance to substitute
+                        new_degree = random.choice(degree_variations)
+                        before = aug_text[:start + offset]
+                        after = aug_text[end + offset:]
+                        aug_text = before + new_degree + after
+                        
+                        new_offset = offset + len(new_degree) - len(entity_text)
+                        aug_entities.append((start + offset, start + offset + len(new_degree), label))
+                        offset = new_offset
+                        continue
+                
+                # For other entities, keep them as is
+                aug_entities.append((start + offset, end + offset, label))
+            
+            augmented.append((aug_text, {"entities": aug_entities}))
+            
+    # Generate synthetic examples with rich context for these entities
+
+
+    #synthetic_examples = generate_synthetic_context_examples(factor * 2)
+    #augmented.extend(synthetic_examples)
+    
+    logging.info(f"Created {len(augmented)} examples for low-recall entities")
+    return augmented
+
+
+
 
 
 def create_spacy_training_data(n_samples: int = 100) -> List[Dict]:
@@ -147,7 +202,6 @@ def generate_company_variations(companies):
     return list(set(variations))
 
 
-
 def generate_degree_variations(degrees):
     """
     Generate degree variations to improve recall.
@@ -231,7 +285,8 @@ def expand_skills_vocabulary(existing_skills):
     other_tech = [
         "Git", "Agile", "Scrum", "Kanban", "Jira", "Confluence", "DevOps", "CI/CD",
         "Test-Driven Development", "Microservices", "RESTful API", "OOP", "Linux",
-        "Unix", "Windows Server", "Networking", "Security", "A/B Testing"
+        "Unix", "Windows Server", "Networking", "Security", "A/B Testing" , "Excel" , "UI/UX Design"
+        , "Prototyping", "Figma", "Adobe XD" ,"R"
     ]
     
     # Add all these skills
@@ -286,6 +341,50 @@ def expand_skills_vocabulary(existing_skills):
     
     return list(expanded)
 
+def generate_synthetic_skills_examples(skills, count=50):
+    """
+    Generate synthetic examples focused on skills.
+    """
+    examples = []
+    
+    templates = [
+        "Technical Skills:\n{skills}",
+        "Proficient in the following technologies: {skills}",
+        "Key skills include: {skills}",
+        "Technologies: {skills}",
+        "Programming Languages & Frameworks: {skills}",
+        "Technical Expertise: {skills}",
+        "Skills & Competencies: {skills}"
+    ]
+    
+    for _ in range(count):
+        # Select random skills
+        selected_skills = random.sample(skills, k=random.randint(3, 10))
+        
+        # Choose a template
+        template = random.choice(templates)
+        
+        # Choose a separator
+        separator = random.choice([", ", " | ", "; ", "\n- ", ", and "])
+        
+        # Create the skills list
+        skills_list = separator.join(selected_skills)
+        
+        # Generate text
+        text = template.replace("{skills}", skills_list)
+        
+        # Create entities list
+        entities = []
+        for skill in selected_skills:
+            skill_pos = text.find(skill)
+            if skill_pos >= 0:
+                entities.append((skill_pos, skill_pos + len(skill), "Skills"))
+        
+        if entities:
+            examples.append((text, {"entities": entities}))
+    
+    return examples
+
 
 
 
@@ -323,12 +422,33 @@ def generate_college_lookalike():
     return random.choice(almost_colleges)
 
 
+def extract_entities_of_type(data, entity_type):
+    """
+    Extract all instances of a specific entity type from the data.
+    """
+    entities = []
+    for text, annotations in data:
+        for start, end, label in annotations["entities"]:
+            if label == entity_type:
+                entities.append(text[start:end])
+    return entities
+
+
+def count_entities_by_type(data):
+    """
+    Count entities by type in the data.
+    """
+    counts = {}
+    for text, annotations in data:
+        for start, end, label in annotations["entities"]:
+            if label not in counts:
+                counts[label] = 0
+            counts[label] += 1
+    return counts
+
+
 if __name__ == "__main__":
     n = 100  # Number of samples to generate
-    training_data = create_spacy_training_data(n)
-    # Save to file in spaCy format
     import json
-    with open("synthetic_spacy_resume_data.json", "w", encoding="utf-8") as f:
-        json.dump(training_data, f, indent=2, ensure_ascii=False)
     print(f"Generated {n} synthetic resume samples for spaCy training.")
     print("fonction bechir:", generate_designation_variations(["Software Engineer", "Data Scientist", "Project Manager", "Business Analyst", "Researcher"]))
