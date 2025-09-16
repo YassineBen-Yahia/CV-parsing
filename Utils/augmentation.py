@@ -526,9 +526,9 @@ def count_entities_by_type(data):
     return counts
 
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     n = 100  # Number of samples to generate
     import json
     from Data_loader import load_and_export_ner_data
     train_data, val_data = load_and_export_ner_data()
-    augmented_train = augment_and_balance_data(train_data)
+    augmented_train = augment_and_balance_data(train_data)"""
