@@ -1,0 +1,1547 @@
+[
+  {
+    "text": "Neural Dynamics International Media buyer (3 months), Bachelor's in Computer Science, specializes in Machine Learning.",
+    "entities": [
+      [
+        101,
+        117,
+        "SKILL"
+      ],
+      [
+        43,
+        51,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "A.S. in Information Technology holder, previously employed at Global Software Ltd. as a Engineer, biomedical for Jan 2020 - Dec 2022. Skills include JavaScript.",
+    "entities": [
+      [
+        149,
+        159,
+        "SKILL"
+      ],
+      [
+        113,
+        132,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Legal secretary at Virtual Systems Technologies for 3 months with expertise in Project Management.",
+    "entities": [
+      [
+        91,
+        109,
+        "SKILL"
+      ],
+      [
+        64,
+        72,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "MS in Economics holder, previously employed at Future Technologies Company as a Scrum Master for 2018-2021. Skills include JavaScript.",
+    "entities": [
+      [
+        123,
+        133,
+        "SKILL"
+      ],
+      [
+        97,
+        106,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Emergency planning/management officer at Future Technologies Company (2018-2021), skilled in Python. Degree: Master's in Artificial Intelligence.",
+    "entities": [
+      [
+        93,
+        99,
+        "SKILL"
+      ],
+      [
+        70,
+        79,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Neural Dynamics Corp. Restaurant manager (3 months), M.A. in Business Administration, specializes in Data Analysis.",
+    "entities": [
+      [
+        101,
+        114,
+        "SKILL"
+      ],
+      [
+        42,
+        50,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Human resources officer at Smart Analytics Ltd. for 3 months with expertise in SQL.",
+    "entities": [
+      [
+        91,
+        94,
+        "SKILL"
+      ],
+      [
+        64,
+        72,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Surveyor, rural practice at AI Systems LLC (2018-2021), skilled in Communication. Degree: Master's in Statistics.",
+    "entities": [
+      [
+        67,
+        80,
+        "SKILL"
+      ],
+      [
+        44,
+        53,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Mobile Innovations Solutions Radiographer, therapeutic (3 months), Bachelor of Statistics, specializes in Communication.",
+    "entities": [
+      [
+        106,
+        119,
+        "SKILL"
+      ],
+      [
+        56,
+        64,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Theatre director at Kemp-Obrien (3 months), skilled in Python. Degree: Bachelor's degree in Electrical Engineering.",
+    "entities": [
+      [
+        55,
+        61,
+        "SKILL"
+      ],
+      [
+        33,
+        41,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Accountant, chartered at Howard-Carey for 2018-2021 with expertise in Machine Learning.",
+    "entities": [
+      [
+        82,
+        98,
+        "SKILL"
+      ],
+      [
+        54,
+        63,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Data Engineer at Cloud Solutions LLC for 2 years with expertise in Project Management.",
+    "entities": [
+      [
+        79,
+        97,
+        "SKILL"
+      ],
+      [
+        53,
+        60,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Operational researcher at Virtual Systems LLC (3 months), skilled in Python. Degree: Doctoral degree in Software Engineering.",
+    "entities": [
+      [
+        69,
+        75,
+        "SKILL"
+      ],
+      [
+        104,
+        121,
+        "POSITION"
+      ],
+      [
+        47,
+        55,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Ph.D. in Computer Engineering holder, previously employed at Future Technologies Inc. as a Site Reliability Engineer for 2 years. Skills include Machine Learning.",
+    "entities": [
+      [
+        145,
+        161,
+        "SKILL"
+      ],
+      [
+        121,
+        128,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Make at Mobile Innovations Ltd. for 3 months with expertise in JavaScript.",
+    "entities": [
+      [
+        75,
+        85,
+        "SKILL"
+      ],
+      [
+        48,
+        56,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Bachelor of Computer Science holder, previously employed at Mobile Innovations Company as a Technical brewer for Jan 2020 - Dec 2022. Skills include Python.",
+    "entities": [
+      [
+        149,
+        155,
+        "SKILL"
+      ],
+      [
+        113,
+        132,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Tourist information centre manager at Mobile Innovations Corp. for Jan 2020 - Dec 2022 with expertise in Project Management.",
+    "entities": [
+      [
+        117,
+        135,
+        "SKILL"
+      ],
+      [
+        79,
+        98,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Digital Transformation Ltd. Warehouse manager (2 years), Associate of Finance, specializes in JavaScript.",
+    "entities": [
+      [
+        94,
+        104,
+        "SKILL"
+      ],
+      [
+        47,
+        54,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Bachelor's in Electrical Engineering holder, previously employed at Webster-Palmer as a Architect for 3 months. Skills include SQL.",
+    "entities": [
+      [
+        127,
+        130,
+        "SKILL"
+      ],
+      [
+        102,
+        110,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Medical illustrator at Digital Transformation LLC (2018-2021), skilled in Data Analysis. Degree: A.S. in Management.",
+    "entities": [
+      [
+        74,
+        87,
+        "SKILL"
+      ],
+      [
+        51,
+        60,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Data Insights Solutions Camera operator (2018-2021), MA in Statistics, specializes in Python.",
+    "entities": [
+      [
+        86,
+        92,
+        "SKILL"
+      ],
+      [
+        41,
+        50,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Master's in Artificial Intelligence holder, previously employed at Neural Dynamics Ltd. as a DevOps Specialist for since 2019. Skills include Project Management.",
+    "entities": [
+      [
+        142,
+        160,
+        "SKILL"
+      ],
+      [
+        115,
+        125,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Copywriter, advertising at Global Software Company (since 2019), skilled in Project Management. Degree: MS in Computer Science.",
+    "entities": [
+      [
+        76,
+        94,
+        "SKILL"
+      ],
+      [
+        52,
+        62,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Mobile Innovations LLC Radio producer (3 months), M.A. in Management, specializes in Project Management.",
+    "entities": [
+      [
+        85,
+        103,
+        "SKILL"
+      ],
+      [
+        39,
+        47,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Solutions Architect at Smart Analytics Inc. for 2018-2021 with expertise in SQL.",
+    "entities": [
+      [
+        88,
+        91,
+        "SKILL"
+      ],
+      [
+        60,
+        69,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Doctorate in Software Engineering holder, previously employed at Blockchain Innovations Ltd. as a Backend Developer for 2018-2021. Skills include SQL.",
+    "entities": [
+      [
+        146,
+        149,
+        "SKILL"
+      ],
+      [
+        13,
+        30,
+        "POSITION"
+      ],
+      [
+        120,
+        129,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Agricultural consultant at Data Insights LLC (2018-2021), skilled in Python. Degree: Bachelor's in Economics.",
+    "entities": [
+      [
+        69,
+        75,
+        "SKILL"
+      ],
+      [
+        46,
+        55,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Quantum Computing Corporation Site Reliability Engineer (3 months), Doctorate in Psychology, specializes in Communication.",
+    "entities": [
+      [
+        108,
+        121,
+        "SKILL"
+      ],
+      [
+        57,
+        65,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Brown LLC Drilling engineer (Jan 2020 - Dec 2022), Associate's in Economics, specializes in Communication.",
+    "entities": [
+      [
+        92,
+        105,
+        "SKILL"
+      ],
+      [
+        29,
+        48,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Aeronautical engineer at Cordova, Gilbert and Anthony (3 months), skilled in Project Management. Degree: Doctorate in Human Resources.",
+    "entities": [
+      [
+        77,
+        95,
+        "SKILL"
+      ],
+      [
+        55,
+        63,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Archivist at Digital Transformation Corporation (2018-2021), skilled in Machine Learning. Degree: M.S. in Software Engineering.",
+    "entities": [
+      [
+        72,
+        88,
+        "SKILL"
+      ],
+      [
+        106,
+        123,
+        "POSITION"
+      ],
+      [
+        49,
+        58,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Quantum Computing Group Site engineer (2 years), Bachelor's in Computer Engineering, specializes in JavaScript.",
+    "entities": [
+      [
+        100,
+        110,
+        "SKILL"
+      ],
+      [
+        39,
+        46,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Nurse, mental health at Baird, Walters and Andrews for Jan 2020 - Dec 2022 with expertise in Project Management.",
+    "entities": [
+      [
+        105,
+        123,
+        "SKILL"
+      ],
+      [
+        67,
+        86,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Doctorate in Information Systems holder, previously employed at Virtual Systems Technologies as a Early years teacher for 2018-2021. Skills include JavaScript.",
+    "entities": [
+      [
+        148,
+        158,
+        "SKILL"
+      ],
+      [
+        122,
+        131,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Corporate treasurer at Curry, Johnson and Lane for 2018-2021 with expertise in Machine Learning.",
+    "entities": [
+      [
+        91,
+        107,
+        "SKILL"
+      ],
+      [
+        63,
+        72,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Engineer, technical sales at Data Insights Corp. for 2018-2021 with expertise in Data Analysis.",
+    "entities": [
+      [
+        93,
+        106,
+        "SKILL"
+      ],
+      [
+        65,
+        74,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Associate of Electrical Engineering holder, previously employed at Williamson-Christensen as a Data Engineer for Jan 2020 - Dec 2022. Skills include Machine Learning.",
+    "entities": [
+      [
+        149,
+        165,
+        "SKILL"
+      ],
+      [
+        113,
+        132,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Data Insights Corporation AI Researcher (3 months), M.A. in Marketing, specializes in Machine Learning.",
+    "entities": [
+      [
+        86,
+        102,
+        "SKILL"
+      ],
+      [
+        29,
+        39,
+        "POSITION"
+      ],
+      [
+        41,
+        49,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Homeopath at Aguirre-Hill (since 2019), skilled in Python. Degree: M.S. in Statistics.",
+    "entities": [
+      [
+        51,
+        57,
+        "SKILL"
+      ],
+      [
+        27,
+        37,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Smart Analytics Technologies Information Security Analyst (Jan 2020 - Dec 2022), B.A. in Software Engineering, specializes in Communication.",
+    "entities": [
+      [
+        126,
+        139,
+        "SKILL"
+      ],
+      [
+        89,
+        106,
+        "POSITION"
+      ],
+      [
+        59,
+        78,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Environmental consultant at Gonzalez LLC (3 months), skilled in Communication. Degree: Bachelor's in Software Engineering.",
+    "entities": [
+      [
+        64,
+        77,
+        "SKILL"
+      ],
+      [
+        101,
+        118,
+        "POSITION"
+      ],
+      [
+        42,
+        50,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Counselling psychologist at Glenn and Sons (2 years), skilled in SQL. Degree: Master's degree in Communications.",
+    "entities": [
+      [
+        65,
+        68,
+        "SKILL"
+      ],
+      [
+        97,
+        110,
+        "SKILL"
+      ],
+      [
+        44,
+        51,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Mobile Innovations International Systems analyst (2018-2021), Associate's in Computer Science, specializes in Project Management.",
+    "entities": [
+      [
+        110,
+        128,
+        "SKILL"
+      ],
+      [
+        50,
+        59,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Doctorate in Marketing holder, previously employed at Cloud Solutions Inc. as a Buyer, industrial for 2018-2021. Skills include Project Management.",
+    "entities": [
+      [
+        128,
+        146,
+        "SKILL"
+      ],
+      [
+        102,
+        111,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Garment/textile technologist at Elliott Group (3 months), skilled in Data Analysis. Degree: MS in Mathematics.",
+    "entities": [
+      [
+        69,
+        82,
+        "SKILL"
+      ],
+      [
+        47,
+        55,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Associate's in Mathematics holder, previously employed at Cruz and Sons as a Research scientist (physical sciences) for Jan 2020 - Dec 2022. Skills include Machine Learning.",
+    "entities": [
+      [
+        156,
+        172,
+        "SKILL"
+      ],
+      [
+        120,
+        139,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Armed forces technical officer at Quantum Computing Inc. (Jan 2020 - Dec 2022), skilled in Communication. Degree: Doctorate in Computer Science.",
+    "entities": [
+      [
+        91,
+        104,
+        "SKILL"
+      ],
+      [
+        58,
+        77,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Investment analyst at Smart Analytics Corporation (3 months), skilled in SQL. Degree: MS in Management.",
+    "entities": [
+      [
+        73,
+        76,
+        "SKILL"
+      ],
+      [
+        51,
+        59,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Programmer, multimedia at Mobile Innovations Solutions (2 years), skilled in SQL. Degree: Master's in Human Resources.",
+    "entities": [
+      [
+        77,
+        80,
+        "SKILL"
+      ],
+      [
+        56,
+        63,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Master's degree in Information Technology holder, previously employed at Smart Analytics International as a Solutions Architect for 3 months. Skills include JavaScript.",
+    "entities": [
+      [
+        157,
+        167,
+        "SKILL"
+      ],
+      [
+        132,
+        140,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Neural Dynamics Ltd. Financial planner (2018-2021), A.S. in Management, specializes in Data Analysis.",
+    "entities": [
+      [
+        87,
+        100,
+        "SKILL"
+      ],
+      [
+        40,
+        49,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "B.A. in Computer Engineering holder, previously employed at Global Software International as a Accountant, chartered public finance for since 2019. Skills include Machine Learning.",
+    "entities": [
+      [
+        163,
+        179,
+        "SKILL"
+      ],
+      [
+        136,
+        146,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Furniture designer at Martinez-Carter for 2018-2021 with expertise in JavaScript.",
+    "entities": [
+      [
+        82,
+        92,
+        "SKILL"
+      ],
+      [
+        54,
+        63,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Illustrator at Future Technologies International for 2018-2021 with expertise in JavaScript.",
+    "entities": [
+      [
+        93,
+        103,
+        "SKILL"
+      ],
+      [
+        65,
+        74,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Associate's in Mathematics holder, previously employed at Faulkner, Barnes and Roberts as a Accounting technician for since 2019. Skills include Project Management.",
+    "entities": [
+      [
+        145,
+        163,
+        "SKILL"
+      ],
+      [
+        118,
+        128,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Ph.D. in Data Science holder, previously employed at Digital Transformation Corporation as a Geophysical data processor for since 2019. Skills include Communication.",
+    "entities": [
+      [
+        151,
+        164,
+        "SKILL"
+      ],
+      [
+        124,
+        134,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Site Reliability Engineer at Digital Transformation LLC for 2018-2021 with expertise in Python.",
+    "entities": [
+      [
+        100,
+        106,
+        "SKILL"
+      ],
+      [
+        72,
+        81,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Technical Program Manager at Digital Transformation Group (Jan 2020 - Dec 2022), skilled in JavaScript. Degree: B.S. in Marketing.",
+    "entities": [
+      [
+        92,
+        102,
+        "SKILL"
+      ],
+      [
+        59,
+        78,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Editorial assistant at AI Systems (Jan 2020 - Dec 2022), skilled in Project Management. Degree: Master of Electrical Engineering.",
+    "entities": [
+      [
+        68,
+        86,
+        "SKILL"
+      ],
+      [
+        35,
+        54,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Cyber Security Solutions International Public librarian (2018-2021), Doctoral degree in Economics, specializes in Project Management.",
+    "entities": [
+      [
+        114,
+        132,
+        "SKILL"
+      ],
+      [
+        57,
+        66,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Land/geomatics surveyor at Neural Dynamics Corporation (2 years), skilled in Python. Degree: PhD in Information Technology.",
+    "entities": [
+      [
+        77,
+        83,
+        "SKILL"
+      ],
+      [
+        56,
+        63,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Aeronautical engineer at Smart Analytics Ltd. for 2018-2021 with expertise in Communication.",
+    "entities": [
+      [
+        90,
+        103,
+        "SKILL"
+      ],
+      [
+        62,
+        71,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "M.S. in Human Resources holder, previously employed at AI Systems International as a Therapeutic radiographer for 2018-2021. Skills include JavaScript.",
+    "entities": [
+      [
+        140,
+        150,
+        "SKILL"
+      ],
+      [
+        114,
+        123,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "M.S. in Management holder, previously employed at Neural Dynamics Company as a Backend Developer for 3 months. Skills include Python.",
+    "entities": [
+      [
+        126,
+        132,
+        "SKILL"
+      ],
+      [
+        101,
+        109,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "MS in Computer Science holder, previously employed at Blockchain Innovations as a Education officer, community for Jan 2020 - Dec 2022. Skills include Data Analysis.",
+    "entities": [
+      [
+        151,
+        164,
+        "SKILL"
+      ],
+      [
+        115,
+        134,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Enterprise Solutions Technologies Chartered legal executive (England and Wales) (2 years), PhD in Business Administration, specializes in Project Management.",
+    "entities": [
+      [
+        138,
+        156,
+        "SKILL"
+      ],
+      [
+        81,
+        88,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Scientist, audiological at Thompson, Mitchell and Davis for 3 months with expertise in Machine Learning.",
+    "entities": [
+      [
+        99,
+        115,
+        "SKILL"
+      ],
+      [
+        72,
+        80,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Network Administrator at Smart Analytics Corp. (Jan 2020 - Dec 2022), skilled in Communication. Degree: B.A. in Information Technology.",
+    "entities": [
+      [
+        81,
+        94,
+        "SKILL"
+      ],
+      [
+        48,
+        67,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Backend Developer at Aguilar-Powell (2018-2021), skilled in Data Analysis. Degree: A.S. in Management.",
+    "entities": [
+      [
+        60,
+        73,
+        "SKILL"
+      ],
+      [
+        37,
+        46,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Doctorate in Computer Engineering holder, previously employed at Neural Dynamics Corp. as a Administrator for 2018-2021. Skills include Machine Learning.",
+    "entities": [
+      [
+        136,
+        152,
+        "SKILL"
+      ],
+      [
+        110,
+        119,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Virtual Systems LLC Theatre stage manager (Jan 2020 - Dec 2022), B.S. in Finance, specializes in SQL.",
+    "entities": [
+      [
+        97,
+        100,
+        "SKILL"
+      ],
+      [
+        43,
+        62,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Scientist, audiological at Global Software International (2 years), skilled in Project Management. Degree: Bachelor's degree in Computer Engineering.",
+    "entities": [
+      [
+        79,
+        97,
+        "SKILL"
+      ],
+      [
+        58,
+        65,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Digital Transformation Inc. Blockchain Developer (Jan 2020 - Dec 2022), Ph.D. in Electrical Engineering, specializes in Python.",
+    "entities": [
+      [
+        120,
+        126,
+        "SKILL"
+      ],
+      [
+        50,
+        69,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "BS in Finance holder, previously employed at AI Systems Inc. as a Backend Developer for since 2019. Skills include Communication.",
+    "entities": [
+      [
+        115,
+        128,
+        "SKILL"
+      ],
+      [
+        88,
+        98,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Smart Analytics International Solicitor (2 years), Doctoral degree in Computer Engineering, specializes in Data Analysis.",
+    "entities": [
+      [
+        107,
+        120,
+        "SKILL"
+      ],
+      [
+        41,
+        48,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Industrial buyer at Digital Transformation Company for Jan 2020 - Dec 2022 with expertise in SQL.",
+    "entities": [
+      [
+        105,
+        108,
+        "SKILL"
+      ],
+      [
+        67,
+        86,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Animator at Bennett LLC (2018-2021), skilled in SQL. Degree: MA in Artificial Intelligence.",
+    "entities": [
+      [
+        48,
+        51,
+        "SKILL"
+      ],
+      [
+        25,
+        34,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Site Reliability Engineer at Data Insights Corp. for 2018-2021 with expertise in Python.",
+    "entities": [
+      [
+        93,
+        99,
+        "SKILL"
+      ],
+      [
+        65,
+        74,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Information Security Analyst at Future Technologies Inc. for 2 years with expertise in SQL.",
+    "entities": [
+      [
+        99,
+        102,
+        "SKILL"
+      ],
+      [
+        73,
+        80,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Network Administrator at Ryan-Haley (since 2019), skilled in JavaScript. Degree: B.S. in Management.",
+    "entities": [
+      [
+        61,
+        71,
+        "SKILL"
+      ],
+      [
+        37,
+        47,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Master's in Mathematics holder, previously employed at Digital Transformation Technologies as a Charity officer for 2018-2021. Skills include Communication.",
+    "entities": [
+      [
+        142,
+        155,
+        "SKILL"
+      ],
+      [
+        116,
+        125,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Ph.D. in Economics holder, previously employed at Mobile Innovations Inc. as a Banker for 2 years. Skills include Machine Learning.",
+    "entities": [
+      [
+        114,
+        130,
+        "SKILL"
+      ],
+      [
+        90,
+        97,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Firefighter at Newton PLC for since 2019 with expertise in Machine Learning.",
+    "entities": [
+      [
+        71,
+        87,
+        "SKILL"
+      ],
+      [
+        42,
+        52,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Biochemist, clinical at AI Systems Solutions for 3 months with expertise in Machine Learning.",
+    "entities": [
+      [
+        88,
+        104,
+        "SKILL"
+      ],
+      [
+        61,
+        69,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Loss adjuster, chartered at Cloud Solutions Technologies for since 2019 with expertise in JavaScript.",
+    "entities": [
+      [
+        102,
+        112,
+        "SKILL"
+      ],
+      [
+        73,
+        83,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "PhD in Economics holder, previously employed at Future Technologies Group as a Television floor manager for 2018-2021. Skills include JavaScript.",
+    "entities": [
+      [
+        134,
+        144,
+        "SKILL"
+      ],
+      [
+        108,
+        117,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Smart Analytics Inc. Systems Analyst (3 months), Master's in Management, specializes in Data Analysis.",
+    "entities": [
+      [
+        88,
+        101,
+        "SKILL"
+      ],
+      [
+        38,
+        46,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Technical Program Manager at Blockchain Innovations International (since 2019), skilled in Project Management. Degree: Bachelor's degree in Management.",
+    "entities": [
+      [
+        91,
+        109,
+        "SKILL"
+      ],
+      [
+        67,
+        77,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Scientific laboratory technician at Virtual Systems Company (Jan 2020 - Dec 2022), skilled in Data Analysis. Degree: Doctoral degree in Communications.",
+    "entities": [
+      [
+        94,
+        107,
+        "SKILL"
+      ],
+      [
+        136,
+        149,
+        "SKILL"
+      ],
+      [
+        61,
+        80,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Corporate investment banker at AI Systems Solutions for Jan 2020 - Dec 2022 with expertise in JavaScript.",
+    "entities": [
+      [
+        106,
+        116,
+        "SKILL"
+      ],
+      [
+        68,
+        87,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Associate's in Psychology holder, previously employed at Virtual Systems Inc. as a Machine Learning Engineer for since 2019. Skills include JavaScript.",
+    "entities": [
+      [
+        83,
+        99,
+        "SKILL"
+      ],
+      [
+        140,
+        150,
+        "SKILL"
+      ],
+      [
+        113,
+        123,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Administrator, Civil Service at Smart Analytics Solutions (2 years), skilled in Python. Degree: M.A. in Computer Engineering.",
+    "entities": [
+      [
+        80,
+        86,
+        "SKILL"
+      ],
+      [
+        59,
+        66,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Chartered management accountant at Alvarez-Sherman for 2018-2021 with expertise in SQL.",
+    "entities": [
+      [
+        95,
+        98,
+        "SKILL"
+      ],
+      [
+        67,
+        76,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Quantum Computing Corporation Blockchain Developer (2 years), Bachelor's in Information Technology, specializes in Data Analysis.",
+    "entities": [
+      [
+        115,
+        128,
+        "SKILL"
+      ],
+      [
+        52,
+        59,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Worked as a Sales promotion account executive at Digital Transformation Corp. for 2018-2021 with expertise in JavaScript.",
+    "entities": [
+      [
+        110,
+        120,
+        "SKILL"
+      ],
+      [
+        82,
+        91,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "MS in Economics holder, previously employed at Future Technologies Inc. as a Scientist, clinical (histocompatibility and immunogenetics) for since 2019. Skills include Machine Learning.",
+    "entities": [
+      [
+        168,
+        184,
+        "SKILL"
+      ],
+      [
+        141,
+        151,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Applications developer at Global Software Company (2 years), skilled in SQL. Degree: Ph.D. in Finance.",
+    "entities": [
+      [
+        72,
+        75,
+        "SKILL"
+      ],
+      [
+        51,
+        58,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "A.S. in Psychology holder, previously employed at Global Software Ltd. as a Production assistant, television for 2018-2021. Skills include Project Management.",
+    "entities": [
+      [
+        139,
+        157,
+        "SKILL"
+      ],
+      [
+        113,
+        122,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Ph.D. in Statistics holder, previously employed at Data Insights Group as a Science writer for 2 years. Skills include Communication.",
+    "entities": [
+      [
+        119,
+        132,
+        "SKILL"
+      ],
+      [
+        95,
+        102,
+        "DURATION"
+      ]
+    ]
+  },
+  {
+    "text": "Blockchain Innovations Corp. Engineer, mining (2018-2021), Master's in Finance, specializes in Python.",
+    "entities": [
+      [
+        95,
+        101,
+        "SKILL"
+      ],
+      [
+        47,
+        56,
+        "DURATION"
+      ]
+    ]
+  }
+]
