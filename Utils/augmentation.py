@@ -3,6 +3,7 @@ from typing import List, Tuple, Dict
 from tools import filter_non_overlapping_spans
 import re
 from faker import Faker
+import json
 import logging
 import spacy
 from spacy.tokens import DocBin
