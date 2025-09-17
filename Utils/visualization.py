@@ -8,7 +8,7 @@ def visualize_data():
     Visualize entity distribution and lengths in the annotated resume data.
     """
     # Path to your annotated resume data
-    DATA_PATH = r"C:\ML\CV-Parsing\Data\Entity Recognition in Resumes.json"
+    DATA_PATH = r"C:\ML\CV-Parsing\Data\augmented_train_data.json"
 
     # Load data
     with open(DATA_PATH, "r", encoding="utf-8") as f:

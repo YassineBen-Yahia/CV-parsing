@@ -6,7 +6,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Paths
-model_path = Path(r"C:\ML\CV-Parsing\training_output\model-best")  #  trained model
+model_path = Path(r"C:\ML\CV-Parsing\transformer\model-best")  #  trained model
 dev_data_path = Path(r"C:\ML\CV-Parsing\Data\dev.spacy")           #  dev set
 metrics_output = Path(r"C:\ML\CV-Parsing\metrics.json")            #  output file
 

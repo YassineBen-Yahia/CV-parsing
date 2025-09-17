@@ -22,12 +22,11 @@ def filter_non_overlapping_spans(spans):
 
 
 
-def create_spacy_files(json_path, train_path, dev_path, exclude_entities,split_skill_entities, train_ratio=0.8):
+def create_spacy_files(path1,path2, train_path, dev_path, exclude_entities,split_skill_entities, train_ratio=0.8):
     nlp = spacy.blank("en")
-    data = []
-    json_data = json.loads(Path(json_path))
-
-    with open(json_path, "r", encoding="utf-8") as f:
+    
+    data=[]
+    with open(path1, "r", encoding="utf-8") as f:
         for line in f:
             item = json.loads(line)
             text = item["content"]
@@ -80,6 +79,41 @@ def create_spacy_files(json_path, train_path, dev_path, exclude_entities,split_s
                             except (ValueError, TypeError):
                                 continue
             data.append((text, {"entities": entity_spans}))
+    
+
+    data2 = []
+    json_data = json.load(open(Path(path2)))
+    
+    for cv in json_data:
+            
+        text = cv[0]
+        entities = cv[1]['entities']
+        entity_spans = []
+        for annotation in entities:
+            # Safely extract label
+            label = annotation[2]
+            if label in exclude_entities:
+                continue
+
+            point={"start":annotation[0],"end":annotation[1]}
+            
+            
+            if not isinstance(point, dict):
+                continue
+            start = int(point["start"])
+            end = int(point["end"])
+            if start is not None and end is not None:
+                try:
+                    start, end = int(start), int(end)
+                    # Skip invalid ranges
+                    if not (0 <= start < end <= len(text)):
+                        continue
+                    entity_spans.append((start, end, label))
+                except (ValueError, TypeError):
+                    continue
+        data2.append((text, {"entities": entity_spans}))
+
+    data.extend(data2)
     random.shuffle(data)
     #print(data[:2])  # Debug: print first 2 samples to verify content
     split = int(len(data) * train_ratio)
@@ -170,16 +204,21 @@ def normalize_skills(text):
 
 def clean_entities(text, entities):
     cleaned = []
+    text_len = len(text)
     for ent in entities:
         
         start, end, label = ent
+        # Ensure indices are within bounds
+        if not (0 <= start < end <= text_len):
+            print(f"Out-of-bounds entity skipped: {ent}")
+            continue
         new_start = start
         new_end = end
         # Remove leading whitespace
-        while new_start < new_end and text[new_start].isspace():
+        while new_start < new_end and new_start < text_len and text[new_start].isspace():
             new_start += 1
         # Remove trailing whitespace
-        while new_end > new_start and text[new_end - 1].isspace():
+        while new_end > new_start and new_end - 1 < text_len and text[new_end - 1].isspace():
             new_end -= 1
         # Only add if non-empty after trimming
         if new_start < new_end:
@@ -250,16 +289,133 @@ def create_spacy_files2(json_path,exclude_entities,train_path,dev_path, train_ra
 
 
 
+def debug_data(config_path, train_path, dev_path):
+    import subprocess
+    result = subprocess.run(
+        ["python", "-m", "spacy", "debug", "data", 
+            config_path, 
+            "--paths.train", train_path,
+            "--paths.dev", dev_path],
+        capture_output=True, text=True
+    )
+    if result.returncode == 0:
+        print("Data validation successful!")
+        print(result.stdout)
+    else:
+        print("Data validation failed!")
+        print(result.stderr)
+
+
+def debug_data_comp(path1, path2,exclude_entities, split_skill_entities):
+    data=[]
+    with open(path1, "r", encoding="utf-8") as f:
+        for line in f:
+            item = json.loads(line)
+            text = item["content"]
+            entities = item["annotation"]
+            entity_spans = []
+            for annotation in entities:
+                # Safely extract label
+                if isinstance(annotation["label"], list):
+                    if not annotation["label"]:
+                        continue  # skip if label list is empty
+                    label = annotation["label"][0]
+                else:
+                    label = annotation["label"]
+                if label in exclude_entities:
+                    continue
+                if split_skill_entities and label == "Skills":
+                    # Split the skill entity into individual skills
+                    for point in annotation["points"]:
+                        if not isinstance(point, dict):
+                            continue
+                        start = int(point["start"])
+                        end = int(point["end"])
+                        skill_text = text[start:end]
+                        # Use comma/semicolon to split skills
+                        if "," in skill_text or ";" in skill_text:
+                            normalized = skill_text.replace(";", ",")
+                            normalized = normalize_skills(normalized)
+                            for skill in [s.strip() for s in normalized.split(",") if s.strip()]:
+                                skill_start = text.find(skill, start, end)
+                                if skill_start != -1:
+                                    skill_end = skill_start + len(skill)
+                                    if 0 <= skill_start < skill_end <= len(text):
+                                        entity_spans.append((skill_start, skill_end, label))
+                        else:
+                            if 0 <= start < end <= len(text):
+                                entity_spans.append((start, end, label))
+                else:
+                    for point in annotation["points"]:
+                        if not isinstance(point, dict):
+                            continue
+                        start = int(point["start"])
+                        end = int(point["end"])
+                        if start is not None and end is not None:
+                            try:
+                                start, end = int(start), int(end)
+                                # Skip invalid ranges
+                                if not (0 <= start < end <= len(text)):
+                                    continue
+                                entity_spans.append((start, end, label))
+                            except (ValueError, TypeError):
+                                continue
+            data.append((text, {"entities": entity_spans}))
+    print(data[0])
+
+    data2 = []
+    json_data = json.load(open(Path(path2)))
+    
+    for cv in json_data:
+            
+        text = cv[0]
+        entities = cv[1]['entities']
+        entity_spans = []
+        for annotation in entities:
+            # Safely extract label
+            label = annotation[2]
+            if label in exclude_entities:
+                continue
+
+            point={"start":annotation[0],"end":annotation[1]}
+            
+            
+            if not isinstance(point, dict):
+                continue
+            start = int(point["start"])
+            end = int(point["end"])
+            if start is not None and end is not None:
+                try:
+                    start, end = int(start), int(end)
+                    # Skip invalid ranges
+                    if not (0 <= start < end <= len(text)):
+                        continue
+                    entity_spans.append((start, end, label))
+                except (ValueError, TypeError):
+                    continue
+        data2.append((text, {"entities": entity_spans}))
+
+    print("******************")
+    print("******************")
+    print("******************")
+    print("******************")
+    print("******************")
+    print("******************")
+    print("******************")
+
+    print(data2[0])
+
+
 
 
 if __name__ == "__main__":
     #path=Path(r"C:\ML\CV-Parsing\Data\training\train_data.json")
     #create_spacy_files2(path)
 
-    train_data, val_data = create_spacy_files2(
-        json_path=r"C:\ML\CV-Parsing\Data\training\train_data.json",
-        train_path=r"C:\ML\CV-Parsing\Data\train.spacy",
-        dev_path=r"C:\ML\CV-Parsing\Data\dev.spacy",
+    debug_data_comp(
+
+        path1=r"C:\ML\CV-Parsing\Data\Entity Recognition in Resumes.json",
+        path2=r"C:\ML\CV-Parsing\Data\training\train_data.json",
         exclude_entities=["UNKNOWN","Graduation Year","Years of Experience"],
-        train_ratio=0.8,
+        split_skill_entities=True,
     )
