@@ -25,7 +25,7 @@ def augment_and_balance_data(train_data):
     logging.info(f"Initial entity distribution: {entity_counts}")
     
     # Augment entities with low recall
-    augmented_entities = augment_entities(train_data, factor=6)
+    augmented_entities = augment_entities(train_data, factor=30)
     
     # Add augmented entities to training data
     train_data.extend(augmented_entities)
@@ -465,7 +465,77 @@ def generate_synthetic_skills_examples(skills, count=50):
     
     return examples
 
-
+def generate_synthetic_context_examples(count=100):
+    """
+    Generate synthetic resume examples with rich context around entities.
+    """
+    synthetic_examples = []
+    
+    # Templates with rich context
+    templates = [
+        "Currently working as {DESIGNATION} at {COMPANIES_WORKED_AT} where I lead projects and initiatives.",
+        "Previously served as {DESIGNATION} at {COMPANIES_WORKED_AT} with responsibilities in team management.",
+        "Graduated with {DEGREE} and immediately joined {COMPANIES_WORKED_AT} as a {DESIGNATION}.",
+        "My role as {DESIGNATION} at {COMPANIES_WORKED_AT} involves strategic planning and execution.",
+        "{DEGREE} graduate with experience as {DESIGNATION} at multiple companies including {COMPANIES_WORKED_AT}.",
+        "After completing my {DEGREE}, I worked at {COMPANIES_WORKED_AT} as their {DESIGNATION}.",
+        "Managed teams as a {DESIGNATION} at {COMPANIES_WORKED_AT} after earning my {DEGREE}."
+    ]
+    
+    # Generate synthetic examples
+    for _ in range(count):
+        template = random.choice(templates)
+        
+        # Generate entities
+        designation = random.choice([
+            "Software Engineer", "Data Scientist", "Project Manager", "Product Manager",
+            "Senior Developer", "Technical Lead", "Engineering Manager", "CTO",
+            "System Architect", "DevOps Engineer", "Frontend Developer", "Backend Engineer",
+            "Full Stack Developer", "Machine Learning Engineer", "UI/UX Designer"
+        ])
+        
+        company = random.choice([
+            "Google", "Microsoft", "Amazon", "Apple", "Facebook", "Netflix", 
+            "IBM", "Oracle", "Intel", "Salesforce", "Adobe", "Twitter",
+            "LinkedIn", "Uber", "Airbnb", "Slack", "Spotify", "PayPal",
+            "Dropbox", "Square", "Stripe", "Twilio", "Atlassian"
+        ])
+        
+        degree = random.choice([
+            "Bachelor of Science in Computer Science",
+            "Master of Science in Data Science",
+            "MBA in Technology Management",
+            "Bachelor of Engineering in Software Development",
+            "Master's in Information Technology",
+            "PhD in Computer Engineering",
+            "Bachelor's degree in Information Systems"
+        ])
+        
+        # Replace placeholders
+        text = template.replace("{DESIGNATION}", designation)
+        text = text.replace("{COMPANIES_WORKED_AT}", company)
+        text = text.replace("{DEGREE}", degree)
+        
+        # Create entities list
+        entities = []
+        
+        # Find positions of each entity in text
+        designation_pos = text.find(designation)
+        if designation_pos >= 0:
+            entities.append((designation_pos, designation_pos + len(designation), "Designation"))
+            
+        company_pos = text.find(company)
+        if company_pos >= 0:
+            entities.append((company_pos, company_pos + len(company), "Companies worked at"))
+            
+        degree_pos = text.find(degree)
+        if degree_pos >= 0:
+            entities.append((degree_pos, degree_pos + len(degree), "Degree"))
+        
+        if entities:
+            synthetic_examples.append((text, {"entities": entities}))
+    
+    return synthetic_examples
 
 
 
