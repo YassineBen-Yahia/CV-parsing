@@ -25,6 +25,8 @@ def filter_non_overlapping_spans(spans):
 def create_spacy_files(json_path, train_path, dev_path, exclude_entities,split_skill_entities, train_ratio=0.8):
     nlp = spacy.blank("en")
     data = []
+    json_data = json.loads(Path(json_path))
+
     with open(json_path, "r", encoding="utf-8") as f:
         for line in f:
             item = json.loads(line)
@@ -105,6 +107,10 @@ def create_spacy_files(json_path, train_path, dev_path, exclude_entities,split_s
 
 
 
+
+
+
+
 def normalize_skills(text):
     """
     Normalize skill entries with comprehensive pattern recognition.
@@ -179,3 +185,81 @@ def clean_entities(text, entities):
         if new_start < new_end:
             cleaned.append((new_start, new_end, label))
     return cleaned
+
+
+
+
+def create_spacy_files2(json_path,exclude_entities,train_path,dev_path, train_ratio=0.8):
+    nlp = spacy.blank("en")
+    data = []
+    json_data = json.load(open(Path(json_path)))
+    print(json_data[0][1]['entities'])
+    for cv in json_data:
+            
+        text = cv[0]
+        entities = cv[1]['entities']
+        entity_spans = []
+        for annotation in entities:
+            # Safely extract label
+            label = annotation[2]
+            if label in exclude_entities:
+                continue
+
+            point={"start":annotation[0],"end":annotation[1]}
+            
+            
+            if not isinstance(point, dict):
+                continue
+            start = int(point["start"])
+            end = int(point["end"])
+            if start is not None and end is not None:
+                try:
+                    start, end = int(start), int(end)
+                    # Skip invalid ranges
+                    if not (0 <= start < end <= len(text)):
+                        continue
+                    entity_spans.append((start, end, label))
+                except (ValueError, TypeError):
+                    continue
+        data.append((text, {"entities": entity_spans}))
+    random.shuffle(data)
+    #print(data[:2])  # Debug: print first 2 samples to verify content
+    split = int(len(data) * train_ratio)
+    data = [(text, {"entities": clean_entities(text, entities["entities"])}) for text, entities in data]    
+    train_data = data[:split]
+    #print(f"First training sample: {train_data[0]}")  # Debug: print first training sample
+    dev_data = data[split:]
+    for dataset, out_path in [(train_data, train_path), (dev_data, dev_path)]:
+        doc_bin = DocBin()
+        for text, entities in tqdm(dataset, desc=f"Processing {out_path}"):
+            doc = nlp.make_doc(text)
+            spans = []
+            for start, end, label in entities["entities"]:
+                span = doc.char_span(start, end, label=label, alignment_mode="strict")
+                if span is not None:
+                    spans.append(span)
+            filtered_spans = filter_non_overlapping_spans(spans)
+            doc.ents = filtered_spans
+            doc_bin.add(doc)
+        doc_bin.to_disk(out_path)
+        print(f"Saved train to {train_path}, dev to {dev_path}")
+    print("Saved !!!")
+
+    return data[:split], data[split:]
+
+
+
+
+
+
+if __name__ == "__main__":
+    #path=Path(r"C:\ML\CV-Parsing\Data\training\train_data.json")
+    #create_spacy_files2(path)
+
+    train_data, val_data = create_spacy_files2(
+        json_path=r"C:\ML\CV-Parsing\Data\training\train_data.json",
+        train_path=r"C:\ML\CV-Parsing\Data\train.spacy",
+        dev_path=r"C:\ML\CV-Parsing\Data\dev.spacy",
+        exclude_entities=["UNKNOWN","Graduation Year","Years of Experience"],
+        train_ratio=0.8,
+    )
