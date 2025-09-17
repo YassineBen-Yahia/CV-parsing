@@ -12,7 +12,7 @@ metrics.json
 
 # Ignore all files in Data except train.spacy and dev.spacy
 Data/*
-!Data/train.spacy
+!Data/augmented_training_data.spacy
 !Data/dev.spacy
 
 
