@@ -188,9 +188,10 @@ def augment_entities(data, factor=6):
     # Generate synthetic examples with rich context for these entities
 
 
-    #synthetic_examples = generate_synthetic_context_examples(factor * 2)
-    #augmented.extend(synthetic_examples)
-    
+    synthetic_examples = generate_synthetic_context_examples(factor * 4)
+    augmented.extend(synthetic_examples)
+    augmentation=generate_boundary_edge_cases(data, factor=6)
+    augmented.extend(augmentation)
     logging.info(f"Created {len(augmented)} examples of entities")
     return augmented
 
@@ -536,6 +537,111 @@ def generate_synthetic_context_examples(count=100):
             synthetic_examples.append((text, {"entities": entities}))
     
     return synthetic_examples
+
+
+def generate_boundary_edge_cases(data, factor=1):
+    """
+    Generate boundary edge cases for all entity types to improve model robustness.
+    """
+    logging.info("Generating boundary edge cases")
+    augmented = []
+    
+    # Entity boundary patterns
+    boundary_patterns = {
+        "Email Address": [
+            ["Contact: ", ""],
+            ["Email: ", ""],
+            ["", " (preferred contact)"],
+            ["", " | Phone:"]
+        ],
+        "Phone": [
+            ["Phone: ", ""],
+            ["Call: ", ""],
+            ["Tel: ", ""],
+            ["", " (mobile)"],
+            ["", " (cell)"]
+        ],
+        "Name": [
+            ["Candidate: ", ""],
+            ["Applicant: ", ""],
+            ["", ", Applicant"],
+            ["", " - Resume"]
+        ],
+        "Designation": [
+            ["Role: ", ""],
+            ["Position: ", ""],
+            ["", " role"],
+            ["Current: ", ""]
+        ],
+        "Companies worked at": [
+            ["Company: ", ""],
+            ["Employer: ", ""],
+            ["", " (employer)"],
+            ["", ", Inc."]
+        ],
+        "Degree": [
+            ["Qualification: ", ""],
+            ["Education: ", ""],
+            ["", " (completed)"],
+            ["", " with honors"]
+        ],
+        "College Name": [
+            ["School: ", ""],
+            ["University: ", ""],
+            ["", " (Graduated)"],
+            ["", ", accredited"]
+        ],
+        "Location": [
+            ["Based in: ", ""],
+            ["Located at: ", ""],
+            ["", " area"],
+            ["", " region"]
+        ]
+    }
+    
+    for _ in range(factor):
+        for text, annotations in tqdm(data, desc="Creating boundary edge cases"):
+            entities = annotations["entities"]
+            
+            # Create a new example with boundary challenges
+            aug_text = text
+            aug_entities = []
+            offset = 0
+            
+            # Sort entities by position
+            sorted_entities = sorted(entities, key=lambda x: x[0])
+            
+            for start, end, label in sorted_entities:
+                entity_text = text[start:end]
+                
+                # Apply boundary modification 50% of the time
+                if label in boundary_patterns and random.random() < 0.5:
+                    # Choose a boundary pattern
+                    prefix, suffix = random.choice(boundary_patterns[label])
+                    
+                    # Apply the pattern
+                    modified_text = prefix + entity_text + suffix
+                    
+                    # Replace in text
+                    before = aug_text[:start + offset]
+                    after = aug_text[end + offset:]
+                    aug_text = before + modified_text + after
+                    
+                    # Update entity position
+                    new_start = start + offset + len(prefix)
+                    new_end = new_start + len(entity_text)
+                    aug_entities.append((new_start, new_end, label))
+                    
+                    # Update offset
+                    offset += len(modified_text) - len(entity_text)
+                else:
+                    # Keep entity as is
+                    aug_entities.append((start + offset, end + offset, label))
+            
+            augmented.append((aug_text, {"entities": aug_entities}))
+    
+    logging.info(f"Created {len(augmented)} boundary edge cases")
+    return augmented
 
 
 
