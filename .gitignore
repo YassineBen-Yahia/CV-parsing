@@ -3,18 +3,17 @@ __pycache__/
 config.cfg 
 
 
-# training outputs ( keep best model)
-training_outputs/model-last/*
+
 
 #logs
 metrics.json
-Utils/evaluate_model.py
+/Utils/evaluate_model.py
 
 # Ignore all files in Data except train.spacy and dev.spacy
-Data/*
+/Data/*
 
 
 
 # Ignore all files in transformer 
-transformer/*
-training_outputs/*
+/transformer/*
+/training_outputs/*
