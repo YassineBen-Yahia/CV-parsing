@@ -4,11 +4,11 @@ config.cfg
 
 
 # training outputs ( keep best model)
-./training_outputs/model-last/*
+training_outputs/model-last/*
 
 #logs
 metrics.json
-./Utils/evaluate_model.py
+Utils/evaluate_model.py
 
 # Ignore all files in Data except train.spacy and dev.spacy
 Data/*
