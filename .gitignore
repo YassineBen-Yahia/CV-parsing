@@ -17,3 +17,11 @@ metrics.json
 # Ignore all files in transformer 
 /transformer/*
 /training_outputs/*
+
+*.csv
+*.tsv
+*.json
+*.spacy
+*.pkl
+*.pt
+*.h5
