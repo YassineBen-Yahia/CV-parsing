@@ -1,0 +1,10 @@
+spacy>=3.0.0
+transformers
+matplotlib
+seaborn
+pandas
+fitz
+PyMuPDF
+openai
+torch
+logging
