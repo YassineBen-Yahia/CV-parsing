@@ -54,6 +54,6 @@ See `requirements.txt` for all dependencies.
   Open `train models/try_model.ipynb`
 
 ## Datasets
-- [Link text](https://www.kaggle.com/datasets/atharvasankhe/resumeparsing)
-- [Link text](https://www.kaggle.com/datasets/dataturks/resume-entities-for-ner)
+- [ResumeParsing](https://www.kaggle.com/datasets/atharvasankhe/resumeparsing)
+- [Resume Entities for NER](https://www.kaggle.com/datasets/dataturks/resume-entities-for-ner)
 
