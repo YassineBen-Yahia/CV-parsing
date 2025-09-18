@@ -1,5 +1,5 @@
-
 import openai
+import spacy
 
 
 
@@ -24,3 +24,19 @@ sample_entities = [
 ]
 
 print(advise_cv(sample_entities))
+
+
+"""# Load your spaCy model (update path as needed)
+nlp = spacy.load(r"C:\ML\CV-Parsing\transformer\model-best")
+
+def parse_text_with_spacy(text):
+    doc = nlp(text)
+    entities = [{"label": ent.label_, "text": ent.text} for ent in doc.ents]
+    return entities
+
+# Input text from user
+txt = input("Paste your CV text here: ")
+parsed_entities = parse_text_with_spacy(txt)
+
+# Pass parsed entities to chatbot
+print(advise_cv(parsed_entities))"""
